@@ -1,0 +1,14 @@
+keys:
+  - &users:
+    - &nicolae age1xaz7gdhqzt63rv5gsz5g7g52yr099gn383rf9rmv00njhmga0vnsk0xdgj
+  - &hosts:
+    - &odin age1h4xqpcnqlv4xa9382ek0wsp4emslflnmtlqnsas6ppm426alwuvqrc5jax
+creation_rules:
+  - path_regex: secrets/secrets.yaml$
+    age:
+      - *nicolae
+      - *odin
+  - path_regex: secrets/cloudflare_cred.json$
+    age:
+      - *nicolae
+      - *odin
