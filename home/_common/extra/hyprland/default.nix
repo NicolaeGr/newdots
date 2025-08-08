@@ -32,6 +32,9 @@
 
     home.packages = [ inputs.rose-pine-hyprcursor.packages.${pkgs.system}.default ];
 
+    # services.flatpak.packages =
+    #   lib.mkIf config.extra.flatpak.enable [ "app.zen_browser.zen" ];
+
     wayland.windowManager.hyprland = {
       enable = true;
 
@@ -125,8 +128,8 @@
           "gaps_out" = 12;
           "border_size" = 2;
 
-          "col.active_border" = "rgba(9e5cafee) rgba(c567dcee) 45deg";
-          "col.inactive_border" = "rgba(595959aa)";
+          # "col.active_border" = "rgba(9e5cafee) rgba(c567dcee) 45deg";
+          # "col.inactive_border" = "rgba(595959aa)";
 
           "allow_tearing" = true;
           "resize_on_border" = true;
@@ -224,52 +227,51 @@
           "immediate, class:^([Ss]team_app_*)$"
         ];
 
-        bind =
-          [
-            "$mod, B, exec, firefox"
-            "$mod, T, exec, $terminal"
-            "$mod, Q, killactive,"
-            "$mod, L, exec, hyprlock"
-            "$mod+Shift, L, exec, hyprlock"
-            "$mod, F, exec, $fileManager"
-            "$mod, V, togglefloating,"
-            "$mod, X, exec, $menu"
-            "$mod, P, pseudo,"
-            "$mod, J, togglesplit,"
+        bind = [
+          "$mod, B, exec, firefox"
+          "$mod, T, exec, $terminal"
+          "$mod, Q, killactive,"
+          "$mod, L, exec, hyprlock"
+          "$mod+Shift, L, exec, hyprlock"
+          "$mod, F, exec, $fileManager"
+          "$mod, V, togglefloating,"
+          "$mod, X, exec, $menu"
+          "$mod, P, pseudo,"
+          "$mod, J, togglesplit,"
 
-            "$mod, left, movefocus, l"
-            "$mod, right, movefocus, r"
-            "$mod, up, movefocus, u"
-            "$mod, down, movefocus, d"
+          "$mod, left, movefocus, l"
+          "$mod, right, movefocus, r"
+          "$mod, up, movefocus, u"
+          "$mod, down, movefocus, d"
 
-            "$mod, S, togglespecialworkspace, magic"
-            "$mod SHIFT, S, movetoworkspace, special:magic"
+          "$mod, S, togglespecialworkspace, magic"
+          "$mod SHIFT, S, movetoworkspace, special:magic"
 
-            "$mod, mouse_down, workspace, e+1"
-            "$mod, mouse_up, workspace, e-1"
+          "$mod, mouse_down, workspace, e+1"
+          "$mod, mouse_up, workspace, e-1"
 
-            "$mod Control_L, left, workspace, e-1"
-            "$mod Control_L, right, workspace, e+1"
-            "$mod SHIFT, left, movetoworkspace, e-1"
-            "$mod SHIFT, right, movetoworkspace, e+1"
+          "$mod Control_L, left, workspace, e-1"
+          "$mod Control_L, right, workspace, e+1"
+          "$mod SHIFT, left, movetoworkspace, e-1"
+          "$mod SHIFT, right, movetoworkspace, e+1"
 
-            "$mod, Tab , cyclenext, "
-            "$mod, Tab, bringactivetotop, "
+          "$mod, Tab , cyclenext, "
+          "$mod, Tab, bringactivetotop, "
 
-            "$mod&Alt, F, fullscreen,"
-          ]
-          ++ (builtins.concatLists (
-            builtins.genList (
-              i:
-              let
-                ws = i + 1;
-              in
-              [
-                "$mod, code:1${toString i}, workspace, ${toString ws}"
-                "$mod SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
-              ]
-            ) 9
-          ));
+          "$mod&Alt, F, fullscreen,"
+        ]
+        ++ (builtins.concatLists (
+          builtins.genList (
+            i:
+            let
+              ws = i + 1;
+            in
+            [
+              "$mod, code:1${toString i}, workspace, ${toString ws}"
+              "$mod SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
+            ]
+          ) 9
+        ));
 
         bindm = [
           "$mod, mouse:272, movewindow"

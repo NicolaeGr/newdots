@@ -22,30 +22,38 @@ in
       home = "/home/nicolae";
       description = "Nicolae";
 
-      # hashedPasswordFile = config.sops.secrets."passwords/nicolae".path;
-      initialPassword = "test";
+      hashedPasswordFile = config.sops.secrets."passwords/nicolae".path;
       packages = [ pkgs.home-manager ];
 
-      extraGroups =
-        [ "wheel" ]
-        ++ configLib.ifUserGroupExists [
-          "networkmanager"
-          "audio"
-          "video"
-          "render"
-          "input"
-          "storage"
-          "users"
-          "power"
-          "libvirt"
-          "docker"
-          "adbusers"
-          "vboxusers"
-        ] config;
+      extraGroups = [
+        "wheel"
+      ]
+      ++ configLib.ifUserGroupExists [
+        "networkmanager"
+        "audio"
+        "video"
+        "render"
+        "input"
+        "storage"
+        "users"
+        "power"
+        "libvirt"
+        "docker"
+        "adbusers"
+        "vboxusers"
+      ] config;
 
       openssh.authorizedKeys.keys = lib.lists.forEach pubKeys (key: builtins.readFile key);
     };
 
-    home-manager.users.nicolae.imports = [ (configLib.relativeToRoot "home/nicolae/default.nix") ];
+    home-manager.users.nicolae.imports = [
+      {
+        home = {
+          username = "nicolae";
+          homeDirectory = "/home/nicolae";
+        };
+      }
+      (configLib.relativeToRoot "home/nicolae/default.nix")
+    ];
   };
 }

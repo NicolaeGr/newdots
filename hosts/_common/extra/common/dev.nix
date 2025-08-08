@@ -10,15 +10,19 @@
   };
 
   config = lib.mkIf config.extra.common.devMode.enable {
-    environment.systemPackages = with pkgs; [
-      # Security
-      hashcat
-      john
-      ncrack
+    environment.systemPackages =
+      with pkgs;
+      [
+        # Security
+        hashcat
+        john
+        ncrack
 
-      # Web
-      unstable.insomnia
-    ];
+      ]
+      ++ mkIf config.extra.gui.enable [
+        # Web
+        unstable.insomnia
+      ];
 
     programs.adb.enable = true;
   };

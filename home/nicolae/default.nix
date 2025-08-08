@@ -1,16 +1,17 @@
 { configLib, ... }:
 {
-  imports =
-    [ ./config ]
-    ++ (map configLib.relativeToRoot [
-      "home/_common/core"
-      "home/_common/extra"
-    ]);
+  imports = [
+    ./config
+  ]
+  ++ (map configLib.relativeToRoot [
+    "home/_common/core"
+    "home/_common/extra"
+  ]);
 
   config = {
-    home = {
-      username = "nicolae";
-      homeDirectory = "/home/nicolae";
-    };
+    # extra.flatpak.enable = true;
+
+    # services.flatpak.packages =
+    #   [ "com.gitlab.tipp10.tipp10" "app.zen_browser.zen" ];
   };
 }

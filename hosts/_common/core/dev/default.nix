@@ -4,7 +4,6 @@
     # Editors
     vim
     neovim
-    vscodium # can be moved to some extra config
 
     # Tools
     uget

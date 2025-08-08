@@ -1,12 +1,12 @@
-{ lib
-, config
-, configLib
-, pkgs
-, ...
-}: {
-  imports = lib.flatten [
-    (configLib.scanPaths ./.)
-  ];
+{
+  lib,
+  config,
+  configLib,
+  pkgs,
+  ...
+}:
+{
+  imports = lib.flatten [ (configLib.scanPaths ./.) ];
 
   options = {
     extra.common.enable = lib.mkEnableOption {
@@ -16,9 +16,13 @@
   };
 
   config = lib.mkIf config.extra.common.enable {
-    environment.systemPackages = with pkgs;  [
-      discord
-      telegram-desktop
-    ];
+    extra.common.devMode.enable = true;
+
+    environment.systemPackages =
+      with pkgs;
+      lib.mkIf config.extra.gui.enable [
+        discord
+        telegram-desktop
+      ];
   };
 }

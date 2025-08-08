@@ -3,12 +3,17 @@ keys:
     - &nicolae age1xaz7gdhqzt63rv5gsz5g7g52yr099gn383rf9rmv00njhmga0vnsk0xdgj
   - &hosts:
     - &odin age1h4xqpcnqlv4xa9382ek0wsp4emslflnmtlqnsas6ppm426alwuvqrc5jax
+    - &lumix age108gwn9u0lrdvyu7l5vaq2hqfkz4grccd2q5zkuf8ez0waqznsy2qlvt0z2
 creation_rules:
   - path_regex: secrets/secrets.yaml$
-    age:
-      - *nicolae
-      - *odin
+    key_groups:
+      - age:
+          - *nicolae
+          - *odin
+          - *lumix
   - path_regex: secrets/cloudflare_cred.json$
-    age:
-      - *nicolae
-      - *odin
+    key_groups:
+      - age:
+          - *nicolae
+          - *odin
+          - *lumix

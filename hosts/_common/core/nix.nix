@@ -28,6 +28,7 @@
         "https://cache.nixos.org/"
         "https://hyprland.cachix.org"
         "https://nix-community.cachix.org"
+        "https://aseipp-nix-cache.global.ssl.fastly.net"
       ];
       trusted-substituters = [
         "https://hyprland.cachix.org"
