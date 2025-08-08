@@ -39,6 +39,14 @@
       };
     };
 
+    services.openssh = {
+      enable = true;
+
+      settings.PasswordAuthentication = false;
+      settings.KbdInteractiveAuthentication = false;
+      settings.PermitRootLogin = "no";
+    };
+
     security.sudo.extraConfig = ''
       Defaults lecture = never # rollback results in sudo lectures after each reboot, it's somewhat useless anyway
       Defaults pwfeedback # password input feedback - makes typed password visible as asterisks
