@@ -79,6 +79,28 @@
               ./hosts/axilon
             ];
           };
+
+        lumix =
+          let
+            hostSpecialArgs = specialArgs // {
+              hostName = "lumix";
+            };
+          in
+          lib.nixosSystem {
+            specialArgs = hostSpecialArgs;
+
+            modules = [
+              home-manager.nixosModules.home-manager
+              {
+                home-manager.useGlobalPkgs = true;
+                home-manager.useUserPackages = true;
+                home-manager.extraSpecialArgs = hostSpecialArgs;
+              }
+
+              ./hosts/lumix
+            ];
+          };
+
       };
     };
 
