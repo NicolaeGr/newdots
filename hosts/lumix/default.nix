@@ -1,12 +1,13 @@
 { configLib, ... }:
 {
-  imports =
-    [ ]
-    ++ (map configLib.relativeToRoot [
-      "hosts/_common/core"
-      "hosts/_common/extra"
-      "hosts/_common/users"
-    ]);
+  imports = [
+    ./hardware-configuration.nix
+  ]
+  ++ (map configLib.relativeToRoot [
+    "hosts/_common/core"
+    "hosts/_common/extra"
+    "hosts/_common/users"
+  ]);
 
   services.croc.enable = true;
 
