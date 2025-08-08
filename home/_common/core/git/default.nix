@@ -8,14 +8,14 @@
       log.showSignature = "true";
       init.defaultBranch = "main";
       pull.rebase = "true";
-      url = {
-        "ssh://git@github.com" = {
-          insteadOf = "https://github.com";
-        };
-        "ssh://git@gitlab.com" = {
-          insteadOf = "https://gitlab.com";
-        };
-      };
+      # url = {
+      #   "ssh://git@github.com" = {
+      #     insteadOf = "https://github.com";
+      #   };
+      #   "ssh://git@gitlab.com" = {
+      #     insteadOf = "https://gitlab.com";
+      #   };
+      # };
     };
 
     # commit.gpgsign = true;
