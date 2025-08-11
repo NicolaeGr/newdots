@@ -19,7 +19,6 @@ in
     after = [ "network.target" ];
 
     execStart = "${mcManager}/bin/minecraft-app-manager --workingPath /shared/minecraft";
-    Environment = config.sops.secrets."minecraft-env".path;
 
     user = "minecraft";
     group = "minecraft";
@@ -28,6 +27,7 @@ in
       Type = "simple";
       Restart = "always";
       RestartSec = 5;
+      EnvironmentFile = config.sops.secrets."minecraft-env".path;
     };
   };
 
