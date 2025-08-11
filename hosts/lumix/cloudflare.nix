@@ -14,7 +14,7 @@
     enable = true;
     package = pkgs.unstable.cloudflared;
     tunnels = {
-      "d816a0b5-9ded-43ef-af82-ccce79a7b919" = {
+      "8b63fee5-4681-49c5-bb56-1709c121d52a" = {
         credentialsFile = config.sops.secrets."cloudflare_cred".path;
         ingress = {
           "mc.electrolit.biz" = "http://localhost:25565";
