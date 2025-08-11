@@ -19,7 +19,7 @@ in
     after = [ "network.target" ];
 
     execStart = "${mcManager}/bin/minecraft-app-manager --workingPath /shared/minecraft";
-    Environment = config.sops.secrets."passwords/nicolae".minecraft-env;
+    Environment = config.sops.secrets."minecraft-env".path;
 
     user = "minecraft";
     group = "minecraft";
