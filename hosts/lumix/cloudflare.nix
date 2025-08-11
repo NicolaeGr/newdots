@@ -1,5 +1,6 @@
 { config, pkgs, ... }:
 {
+  sops.secrets."cloudflare_cred" = { };
 
   services.cloudflared = {
     enable = true;
