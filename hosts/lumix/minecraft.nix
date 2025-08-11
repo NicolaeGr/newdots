@@ -9,7 +9,7 @@ let
 in
 {
   environment.systemPackages = [
-    pkgs.openjdk-17-jre
+    pkgs.openjdk17
     mcManager
   ];
 
