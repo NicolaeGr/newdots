@@ -6,7 +6,7 @@
 }:
 {
   sops.secrets."cloudflare_cred" = {
-    sopsFile = (configLib.relativeToRoot "secrets/cloudflared_cred.json");
+    sopsFile = (configLib.relativeToRoot "secrets/cloudflare_cred.json");
   };
 
   services.cloudflared = {
