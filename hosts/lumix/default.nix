@@ -3,6 +3,7 @@
   imports = [
     ./hardware-configuration.nix
     ./minecraft.nix
+    ./cloudflare.nix
   ]
   ++ (map configLib.relativeToRoot [
     "hosts/_common/core"
