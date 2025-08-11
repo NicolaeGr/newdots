@@ -1,7 +1,12 @@
-{ config, pkgs, ... }:
+{
+  configLib,
+  config,
+  pkgs,
+  ...
+}:
 {
   sops.secrets."cloudflare_cred" = {
-    sopsFile = "secrets/cloudflared_cred.json";
+    sopsFile = (configLib.relativeToRoot "secrets/cloudflared_cred.json");
   };
 
   services.cloudflared = {
