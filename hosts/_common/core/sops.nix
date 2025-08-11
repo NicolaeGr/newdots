@@ -16,6 +16,7 @@
       "passwords/nicolae" = {
         neededForUsers = true;
       };
+      "minecraft-env" = { };
     };
   };
 }
