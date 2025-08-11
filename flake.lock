@@ -279,11 +279,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1754938225,
-        "narHash": "sha256-8upK2IA90aPjJsthky4nsxCQ/sz47FZ8wyAIDc2iiN4=",
+        "lastModified": 1754939559,
+        "narHash": "sha256-Dlp3mvHhNOxvDV6BuQ+qwWG7S/CB9WAuoW2xNDwtr4w=",
         "owner": "nicolaegr",
         "repo": "minecraft.manager",
-        "rev": "2c87b9a3cfe74a1abea53df67f7af3619c56d934",
+        "rev": "4eb27282070a01ecd19cc01d7198ce3093695974",
         "type": "github"
       },
       "original": {
