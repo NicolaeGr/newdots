@@ -1,4 +1,9 @@
-{ pkgs, inputs, ... }:
+{
+  pkgs,
+  inputs,
+  config,
+  ...
+}:
 let
   mcManager = inputs.minecraft-manager.packages.${pkgs.system}.minecraft-app-manager;
 in
@@ -8,22 +13,23 @@ in
     mcManager
   ];
 
-  # systemd.services.minecraft-manager = {
-  #   description = "Minecraft App Manager Service";
-  #   wantedBy = [ "multi-user.target" ];
-  #   after = [ "network.target" ];
+  systemd.services.minecraft-manager = {
+    description = "Minecraft App Manager Service";
+    wantedBy = [ "multi-user.target" ];
+    after = [ "network.target" ];
 
-  #   execStart = "${mcManager}/bin/minecraft-app-manager";
+    execStart = "${mcManager}/bin/minecraft-app-manager --workingPath /shared/minecraft";
+    Environment = config.sops.secrets."passwords/nicolae".minecraft-env;
 
-  #   user = "minecraft";
-  #   group = "minecraft";
+    user = "minecraft";
+    group = "minecraft";
 
-  #   serviceConfig = {
-  #     Type = "simple";
-  #     Restart = "always";
-  #     RestartSec = 5;
-  #   };
-  # };
+    serviceConfig = {
+      Type = "simple";
+      Restart = "always";
+      RestartSec = 5;
+    };
+  };
 
   users.users.minecraft = {
     isSystemUser = true;
