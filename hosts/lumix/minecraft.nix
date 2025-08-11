@@ -19,10 +19,11 @@ in
     after = [ "network.target" ];
 
     user = "minecraft";
-    group = "minecraft";
+    # group = "minecraft";
 
     serviceConfig = {
       ExecStart = "${mcManager}/bin/minecraft-app-manager --workingPath /shared/minecraft";
+      Group = "minecraft";
       Type = "simple";
       Restart = "always";
       RestartSec = 5;
