@@ -22,7 +22,7 @@ in
     # group = "minecraft";
 
     serviceConfig = {
-      ExecStart = "${mcManager}/bin/minecraft.manager --workingPath /shared/minecraft";
+      ExecStart = "${mcManager}/bin/minecraft.manager --workingPath=/shared/minecraft";
       User = "minecraft";
       Group = "minecraft";
       Type = "simple";
