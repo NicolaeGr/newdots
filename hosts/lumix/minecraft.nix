@@ -18,12 +18,11 @@ in
     wantedBy = [ "multi-user.target" ];
     after = [ "network.target" ];
 
-    execStart = "${mcManager}/bin/minecraft-app-manager --workingPath /shared/minecraft";
-
     user = "minecraft";
     group = "minecraft";
 
     serviceConfig = {
+      ExecStart = "${mcManager}/bin/minecraft-app-manager --workingPath /shared/minecraft";
       Type = "simple";
       Restart = "always";
       RestartSec = 5;
