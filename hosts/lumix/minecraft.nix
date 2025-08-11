@@ -33,7 +33,6 @@ in
 
   users.users.minecraft = {
     isSystemUser = true;
-    isDisabled = true;
     group = "minecraft";
     shell = "/bin/false";
     createHome = false;
