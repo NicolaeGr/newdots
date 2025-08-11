@@ -14,7 +14,14 @@
   config = lib.mkIf config.extra.gui.enable {
     home-manager.sharedModules = [ ({ extra.gui.enable = true; }) ];
 
+    services.gvfs.enable = true;
     services.libinput.enable = true;
+
+    environment.systemPackages = with pkgs; [
+      # Auto Mount
+      udisks2
+      udiskie
+    ];
 
     hardware.graphics = {
       enable = true;

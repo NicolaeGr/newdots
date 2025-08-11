@@ -139,5 +139,10 @@
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    minecraft-manager = {
+      url = "github:nicolaegr/minecraft.manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 }

@@ -9,6 +9,9 @@
     "hosts/_common/users"
   ]);
 
+  # Dell is not a bitch and supports linux driver
+  services.fwupd.enable = true;
+
   services.croc.enable = true;
 
   boot.loader.systemd-boot.enable = true;
