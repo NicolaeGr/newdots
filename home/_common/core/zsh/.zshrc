@@ -1,6 +1,12 @@
 # Load version control information
 autoload -Uz vcs_info
-precmd() { vcs_info }
+precmd() {
+	vcs_info
+}
+
+if [[ $- != *i* ]]; then
+	return
+fi
 
 # Format the vcs_info_msg_0_ variable
 zstyle ':vcs_info:git:*' formats '%F{088}(%b)'
@@ -11,9 +17,9 @@ RPROMPT='${vcs_info_msg_0_}'
 
 # Test if connectiong over ssh, if so, show the hostname
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
-  ps1_hostname="@%{%F{032}%}%M"
+	ps1_hostname="@%{%F{032}%}%M"
 else
-  ps1_hostname=""
+	ps1_hostname=""
 fi
 
 # Colored prompt

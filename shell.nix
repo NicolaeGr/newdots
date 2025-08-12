@@ -27,7 +27,7 @@
         home-manager
         git
         just
-        nixfmt
+        nixfmt-classic
         nil
 
         age

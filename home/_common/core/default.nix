@@ -28,11 +28,8 @@
   systemd.user.startServices = "sd-switch";
 
   home = {
-    sessionPath = [
-      "$HOME/.local/bin"
-    ];
+    sessionPath = [ "$HOME/.local/bin" ];
     sessionVariables = {
-      SHELL = "zsh";
       TERM = "kitty";
       TERMINAL = "kitty";
       VISUAL = "nvim";

@@ -1,4 +1,4 @@
-{ configLib, ... }:
+{ configLib, pkgs, ... }:
 {
   imports = [
     ./config
@@ -9,6 +9,7 @@
   ]);
 
   config = {
+    home.packages = [ pkgs.firefox ];
     # extra.flatpak.enable = true;
 
     # services.flatpak.packages =

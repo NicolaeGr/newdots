@@ -11,6 +11,8 @@
     "hosts/_common/users"
   ]);
 
+  users.victor.enable = true;
+
   # Dell is not a bitch and supports linux driver
   services.fwupd.enable = true;
 

@@ -27,7 +27,7 @@
           location = "https://nightly.gnome.org/gnome-nightly.flatpakrepo";
         }
       ];
-      packages = [ "app.zen_browser.zen" ];
+      # packages = [ "app.zen_browser.zen" ];
 
       overrides = {
         global = {

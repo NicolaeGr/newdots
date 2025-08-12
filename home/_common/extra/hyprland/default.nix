@@ -32,8 +32,7 @@
 
     home.packages = [ inputs.rose-pine-hyprcursor.packages.${pkgs.system}.default ];
 
-    # services.flatpak.packages =
-    #   lib.mkIf config.extra.flatpak.enable [ "app.zen_browser.zen" ];
+    services.flatpak.packages = [ "app.zen_browser.zen" ];
 
     wayland.windowManager.hyprland = {
       enable = true;

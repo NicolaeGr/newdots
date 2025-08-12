@@ -10,20 +10,25 @@ let
 in
 {
   options = {
-    users.nicolae.enable = lib.mkEnableOption {
+    users.victor.enable = lib.mkEnableOption {
       default = false;
-      description = "Enable Nicolae's user configuration.";
+      description = "Enable Victor's user configuration.";
     };
   };
 
-  config = lib.mkIf config.users.nicolae.enable {
-    users.users.nicolae = {
-      isNormalUser = true;
-      home = "/home/nicolae";
-      description = "Nicolae";
+  config = lib.mkIf config.users.victor.enable {
+    sops.secrets = {
+      "passwords/victor" = {
+        neededForUsers = true;
+      };
+    };
 
-      # hashedPasswordFile = config.sops.secrets."passwords/nicolae".path;
-      initialPassword = "test";
+    users.users.victor = {
+      isNormalUser = true;
+      home = "/home/victor";
+      description = "Victor";
+
+      hashedPasswordFile = config.sops.secrets."passwords/victor".path;
       packages = [ pkgs.home-manager ];
 
       extraGroups = [
@@ -47,14 +52,14 @@ in
       openssh.authorizedKeys.keys = lib.lists.forEach pubKeys (key: builtins.readFile key);
     };
 
-    home-manager.users.nicolae.imports = [
+    home-manager.users.victor.imports = [
       {
         home = {
-          username = "nicolae";
-          homeDirectory = "/home/nicolae";
+          username = "victor";
+          homeDirectory = "/home/victor";
         };
       }
-      (configLib.relativeToRoot "home/nicolae/default.nix")
+      (configLib.relativeToRoot "home/victor/default.nix")
     ];
   };
 }

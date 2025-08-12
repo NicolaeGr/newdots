@@ -2,10 +2,11 @@
 {
   imports = [
     ./nicolae
-    # ./victor
+    ./victor
     # ./guest
   ];
+
   users.nicolae.enable = true;
 
-  # users.mutableUsers = false;
+  users.mutableUsers = false;
 }
