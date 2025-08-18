@@ -54,8 +54,6 @@
     options = [
       "noatime"
       "data=ordered"
-    ];
-    mountOptions = [
       "uid=0"
       "gid=100"
       "umask=000"
