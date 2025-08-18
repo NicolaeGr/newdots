@@ -3,6 +3,7 @@
   imports = [
     ./nicolae
     ./victor
+    ./deploy
     # ./guest
   ];
 
