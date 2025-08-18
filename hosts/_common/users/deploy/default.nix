@@ -5,9 +5,9 @@
   configLib,
   ...
 }:
-let
-  pubKeys = lib.filesystem.listFilesRecursive ./keys;
-in
+# let
+#   pubKeys = lib.filesystem.listFilesRecursive ./keys;
+# in
 {
   options = {
     users.deploy.enable = lib.mkEnableOption {
@@ -43,7 +43,7 @@ in
         "vboxusers"
       ] config;
 
-      openssh.authorizedKeys.keys = lib.lists.forEach pubKeys (key: builtins.readFile key);
+      # openssh.authorizedKeys.keys = lib.lists.forEach pubKeys (key: builtins.readFile key);
     };
 
     # home-manager.users.deploy.imports = [
