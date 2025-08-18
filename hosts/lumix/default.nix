@@ -11,6 +11,7 @@
     "hosts/_common/users"
   ]);
 
+  users.deploy.enable = true;
   users.victor.enable = true;
 
   # Dell is not a bitch and supports linux driver
