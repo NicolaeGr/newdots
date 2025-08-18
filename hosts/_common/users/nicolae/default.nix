@@ -22,7 +22,6 @@ in
       home = "/home/nicolae";
       description = "Nicolae";
 
-      initialPassword = "test";
       hashedPasswordFile = config.sops.secrets."passwords/nicolae".path;
       packages = [ pkgs.home-manager ];
 
