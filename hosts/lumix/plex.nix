@@ -1,10 +1,10 @@
 { ... }:
 {
-  config = {
-    services.plex = {
+  # config = {
+  #   services.plex = {
 
-      enable = true;
-      openFirewall = true;
-    };
-  };
+  #     enable = true;
+  #     openFirewall = true;
+  #   };
+  # };
 }

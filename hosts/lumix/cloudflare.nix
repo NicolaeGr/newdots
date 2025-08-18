@@ -11,7 +11,6 @@
       "electrolit.biz"
       "mc.electrolit.biz"
     ];
-
     frequency = "*:0/5"; # every 5 mins
 
     ipv4 = true;
