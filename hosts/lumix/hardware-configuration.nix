@@ -48,34 +48,31 @@
     ];
   };
 
-  # fileSystems."/storage" = {
-  #   device = "/dev/disk/by-uuid/065df52d-5eb8-4d0d-ab3d-e69133825609";
-  #   fsType = "ext4";
-  #   options = [
-  #     "noatime"
-  #     "data=ordered"
-  #     "uid=0"
-  #     "gid=100"
-  #     "umask=000"
-  #   ];
-  # };
+  fileSystems."/storage" = {
+    device = "/dev/disk/by-uuid/065df52d-5eb8-4d0d-ab3d-e69133825609";
+    fsType = "ext4";
+    options = [
+      "noatime"
+      "data=ordered"
+    ];
+  };
 
-  # systemd.tmpfiles.rules = [ "D /storage 0777 root users - -" ];
+  systemd.tmpfiles.rules = [ "D /storage 0777 root users - -" ];
 
   # # Makes /storage sticky. New files stay in 'users' group
-  # systemd.services.setup-storage-perms = {
-  #   script = ''
-  #     chmod g+s /storage
+  systemd.services.setup-storage-perms = {
+    script = ''
+      chmod g+s /storage
 
-  #     chown root:users /storage
-  #     chmod 0777 /storage
-  #   '';
-  #   serviceConfig = {
-  #     Type = "oneshot";
-  #     RemainAfterExit = "yes";
-  #     ExecStartPre = "-/bin/chmod 0777 /storage";
-  #   };
-  # };
+      chown root:users /storage
+      chmod 0777 /storage
+    '';
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = "yes";
+      ExecStartPre = "-/bin/chmod 0777 /storage";
+    };
+  };
 
   swapDevices = [ ];
 
