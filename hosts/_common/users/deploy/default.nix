@@ -17,6 +17,12 @@
   };
 
   config = lib.mkIf config.users.deploy.enable {
+    sops.secrets = {
+      "passwords/deploy" = {
+        neededForUsers = true;
+      };
+    };
+
     users.users.deploy = {
       isNormalUser = true;
       home = "/home/deploy";

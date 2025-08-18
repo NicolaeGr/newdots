@@ -17,6 +17,12 @@ in
   };
 
   config = lib.mkIf config.users.nicolae.enable {
+    sops.secrets = {
+      "passwords/nicolae" = {
+        neededForUsers = true;
+      };
+    };
+
     users.users.nicolae = {
       isNormalUser = true;
       home = "/home/nicolae";
