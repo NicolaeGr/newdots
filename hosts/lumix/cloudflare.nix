@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, ... }:
 {
   sops.secrets."cloudflare_api_key" = { };
 

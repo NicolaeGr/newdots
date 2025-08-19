@@ -15,6 +15,13 @@
   users.deploy.enable = true;
   users.victor.enable = true;
 
+  # Nginx + Certbot
+  services.nginx.enable = true;
+  security.acme = {
+    acceptTerms = true;
+    defaults.email = "nicolaegr@proton.me";
+  };
+
   # Dell is not a bitch and supports linux driver
   services.fwupd.enable = true;
 
