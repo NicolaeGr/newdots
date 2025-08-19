@@ -57,8 +57,6 @@
     ];
   };
 
-  systemd.tmpfiles.rules = [ "D /storage 0777 root users - -" ];
-
   # # Makes /storage sticky. New files stay in 'users' group
   systemd.services.setup-storage-perms = {
     script = ''

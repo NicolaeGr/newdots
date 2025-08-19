@@ -1,14 +1,75 @@
-{ ... }:
+{ pkgs, ... }:
+let
+  baseDir = "/storage/jellyfin";
+in
 {
   config = {
-    services.cloudflare-dyndns.domains = [ "jf.electrolit.biz" ];
-
     services.jellyfin = {
+      enable = true;
+      package = pkgs.unstable.jellyfin;
+
+      dataDir = "${baseDir}/jellyfin";
+
+      # user = "deploy";
+      # group = "users";
+    };
+
+    services.radarr = {
       enable = true;
       openFirewall = true;
 
-      dataDir = "/storage/jellyfin";
+      dataDir = "${baseDir}/radarr";
+
+      user = "deploy";
+      group = "users";
     };
+    # /nix/store/s9paq9nyrj9mmahaiqchma2xcw1h37x1-jellyfin-10.10.7/bin/jellyfin
+
+    services.sonarr = {
+      enable = true;
+      openFirewall = true;
+
+      dataDir = "${baseDir}/sonarr";
+
+      user = "deploy";
+      group = "users";
+    };
+
+    services.prowlarr = {
+      enable = true;
+      openFirewall = true;
+    };
+
+    services.bazarr = {
+      enable = true;
+      openFirewall = true;
+
+      user = "deploy";
+      group = "users";
+    };
+
+    services.qbittorrent = {
+      enable = true;
+
+      user = "deploy";
+      group = "users";
+
+      profileDir = "${baseDir}/qbittorrent";
+      webuiPort = 8020;
+      openFirewall = true;
+      serverConfig = {
+        LegalNotice.Accepted = true;
+        Preferences = {
+          General.Locale = "en";
+          WebUI.CSRFProtection = false;
+          WebUI.HostHeaderValidation = true;
+          WebUI.Username = "user";
+          WebUI.Password_PBKDF2 = "@ByteArray(6/PxK1oTs3CuJ92zB2gzxg==:Efg0yQ8y9Jp3M1Y/IEA8G/DYWge3QwnHWhrwW/5tZbu5nVHuLQfJY7Bb2EwjOfJc9a044juSiKNgjZby+1wR3g==)";
+        };
+      };
+    };
+
+    services.cloudflare-dyndns.domains = [ "jf.electrolit.biz" ];
 
     services.nginx = {
       virtualHosts."jf.electrolit.biz" = {
