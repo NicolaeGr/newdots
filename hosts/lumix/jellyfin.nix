@@ -1,12 +1,11 @@
 { ... }:
 {
   config = {
-    services.plex = {
-
+    services.jellyfin = {
       enable = true;
       openFirewall = true;
 
-      dataDir = "/storage/plex";
+      dataDir = "/storage/jellyfin";
     };
   };
 }
