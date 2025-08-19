@@ -4,7 +4,7 @@
     ./hardware-configuration.nix
     ./minecraft.nix
     ./cloudflare.nix
-    ./jellyfin.nixj
+    ./jellyfin.nix
   ]
   ++ (map configLib.relativeToRoot [
     "hosts/_common/core"
