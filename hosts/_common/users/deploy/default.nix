@@ -52,14 +52,14 @@
       # openssh.authorizedKeys.keys = lib.lists.forEach pubKeys (key: builtins.readFile key);
     };
 
-    # home-manager.users.deploy.imports = [
-    #   {
-    #     home = {
-    #       username = "deploy";
-    #       homeDirectory = "/home/deploy";
-    #     };
-    #   }
-    #   (configLib.relativeToRoot "home/deploy/default.nix")
-    # ];
+    home-manager.users.deploy.imports = [
+      {
+        home = {
+          username = "deploy";
+          homeDirectory = "/home/deploy";
+        };
+      }
+      (configLib.relativeToRoot "home/deploy/default.nix")
+    ];
   };
 }

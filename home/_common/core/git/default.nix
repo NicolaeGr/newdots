@@ -16,6 +16,11 @@
           insteadOf = "https://gitlab.com";
         };
       };
+
+      safe.directory = [
+        "/shared/*"
+        "/storage/*"
+      ];
     };
 
     # commit.gpgsign = true;
