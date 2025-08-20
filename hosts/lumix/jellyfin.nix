@@ -9,9 +9,6 @@ in
       package = pkgs.unstable.jellyfin;
 
       dataDir = "${baseDir}/jellyfin";
-
-      # user = "deploy";
-      # group = "users";
     };
 
     services.radarr = {
@@ -23,7 +20,6 @@ in
       user = "deploy";
       group = "users";
     };
-    # /nix/store/s9paq9nyrj9mmahaiqchma2xcw1h37x1-jellyfin-10.10.7/bin/jellyfin
 
     services.sonarr = {
       enable = true;

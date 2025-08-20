@@ -1,0 +1,47 @@
+{ pkgs, ... }:
+{
+  systemd.services = {
+    my-docker-compose-app = {
+      description = "Fast CEITI Docker Compose App";
+      after = [ "docker.service" ];
+      requires = [ "docker.service" ];
+      serviceConfig = {
+        Type = "oneshot";
+        RemainAfterExit = true;
+        WorkingDirectory = "/shared/fast-ceiti";
+        ExecStart = "./sail up -d";
+        ExecStop = "./sail down";
+        Restart = "on-failure";
+        KillMode = "process";
+        TimeoutStopSec = 10;
+      };
+      wantedBy = [ "multi-user.target" ];
+    };
+  }
+  // builtins.listToAttrs (
+    builtins.genList (i: {
+      name = "laravel-queue@${toString (i + 1)}";
+      value = {
+        description = "Laravel Sail Queue Worker ${toString (i + 1)}";
+        after = [ "docker.service" ];
+        requires = [ "docker.service" ];
+        wantedBy = [ "multi-user.target" ];
+        serviceConfig = {
+          ExecStart = ''
+            ${pkgs.docker}/bin/docker exec -w /var/www/html fast-ceiti-laravel.test-1 php artisan queue:work redis  --sleep=3 --tries=3 --timeout=90
+          '';
+          ExecStop = ''
+            ${pkgs.docker}/bin/docker exec fast-ceiti-laravel.test-1 pkill -f "artisan queue:work"
+          '';
+          Restart = "always";
+          KillMode = "process";
+          TimeoutStopSec = 10;
+        };
+      };
+    }) 3
+  ); # Adjust this number for how many workers you want
+
+  services.cron.systemCronJobs = [
+    "* * * * * victor  ${pkgs.docker}/bin/docker exec -w /var/www/html fast-ceiti-laravel.test-1 php artisan schedule:run >> /dev/null 2>&1"
+  ];
+}
