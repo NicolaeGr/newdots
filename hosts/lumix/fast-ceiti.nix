@@ -9,8 +9,8 @@
         Type = "oneshot";
         RemainAfterExit = true;
         WorkingDirectory = "/shared/fast-ceiti";
-        ExecStart = "./sail up -d";
-        ExecStop = "./sail down";
+        ExecStart = "/shared/fast-ceiti/sail up -d";
+        ExecStop = "/shared/fast-ceiti/sail down";
         Restart = "on-failure";
         KillMode = "process";
         TimeoutStopSec = 10;

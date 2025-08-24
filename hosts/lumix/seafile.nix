@@ -8,6 +8,6 @@
     adminEmail = "nicolaegr@proton.me";
     initialAdminPassword = "init";
 
-    ccnetSettings.General.SERVICE_URL = "drive.electrolit.biz";
+    ccnetSettings.General.SERVICE_URL = "https://drive.electrolit.biz";
   };
 }
