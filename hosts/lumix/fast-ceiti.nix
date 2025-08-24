@@ -9,8 +9,8 @@
         Type = "oneshot";
         RemainAfterExit = true;
         WorkingDirectory = "/shared/fast-ceiti";
-        ExecStart = "/shared/fast-ceiti/sail up -d";
-        ExecStop = "/shared/fast-ceiti/sail down";
+        ExecStart = "${pkgs.zsh}/bin/zsh ./sail up -d";
+        ExecStop = "${pkgs.zsh}/bin/zsh ./sail down";
         Restart = "on-failure";
         KillMode = "process";
         TimeoutStopSec = 10;
@@ -23,8 +23,14 @@
       name = "fast-ceiti-queue@${toString (i + 1)}";
       value = {
         description = "Fast Ceiti Sail Queue Worker ${toString (i + 1)}";
-        after = [ "docker.service" ];
-        requires = [ "docker.service" ];
+        after = [
+          "docker.service"
+          "fast-ceiti.service"
+        ];
+        requires = [
+          "docker.service"
+          "fast-ceiti.service"
+        ];
         wantedBy = [ "multi-user.target" ];
         serviceConfig = {
           ExecStart = ''
