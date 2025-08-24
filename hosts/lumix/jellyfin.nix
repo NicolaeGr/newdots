@@ -69,11 +69,10 @@ in
 
     services.nginx = {
       virtualHosts."jf.electrolit.biz" = {
-        addSSL = true;
+        forceSSL = true;
         enableACME = true;
 
         extraConfig = ''
-
           client_max_body_size 20M;
 
           # Security / XSS Mitigation
