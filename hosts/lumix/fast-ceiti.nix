@@ -5,12 +5,17 @@
       description = "Fast CEITI Docker Compose App";
       after = [ "docker.service" ];
       requires = [ "docker.service" ];
+      path = [
+        pkgs.bash
+        pkgs.docker
+        pkgs.docker-compose
+      ];
       serviceConfig = {
         Type = "oneshot";
         RemainAfterExit = true;
         WorkingDirectory = "/shared/fast-ceiti";
-        ExecStart = "${pkgs.zsh}/bin/zsh ./sail up -d";
-        ExecStop = "${pkgs.zsh}/bin/zsh ./sail down";
+        ExecStart = "${pkgs.bash}/bin/bash ./sail up -d";
+        ExecStop = "${pkgs.bash}/bin/bash ./sail down";
         Restart = "on-failure";
         KillMode = "process";
         TimeoutStopSec = 10;
