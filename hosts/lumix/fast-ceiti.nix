@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   systemd.services = {
-    my-docker-compose-app = {
+    fast-ceiti = {
       description = "Fast CEITI Docker Compose App";
       after = [ "docker.service" ];
       requires = [ "docker.service" ];
@@ -20,9 +20,9 @@
   }
   // builtins.listToAttrs (
     builtins.genList (i: {
-      name = "laravel-queue@${toString (i + 1)}";
+      name = "fast-ceiti-queue@${toString (i + 1)}";
       value = {
-        description = "Laravel Sail Queue Worker ${toString (i + 1)}";
+        description = "Fast Ceiti Sail Queue Worker ${toString (i + 1)}";
         after = [ "docker.service" ];
         requires = [ "docker.service" ];
         wantedBy = [ "multi-user.target" ];
