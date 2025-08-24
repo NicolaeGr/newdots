@@ -43,7 +43,7 @@
     };
   };
 
-  environment.systemPackages = with pkgs.unstable; [ seafile ];
+  environment.systemPackages = with pkgs.unstable; [ seafile-server ];
 
   services.seafile = {
     enable = true;
