@@ -6,6 +6,7 @@
     ./cloudflare.nix
     ./jellyfin.nix
     ./fast-ceiti.nix
+    ./seafile.nix
   ]
   ++ (map configLib.relativeToRoot [
     "hosts/_common/core"
