@@ -8,6 +8,9 @@ let
   mcManager = inputs.minecraft-manager.packages.${pkgs.system}.minecraft-app-manager;
 in
 {
+
+  services.cloudflare-dyndns.domains = [ "mc.electrolit.biz" ];
+
   environment.systemPackages = [
     pkgs.openjdk17
     mcManager
@@ -36,9 +39,4 @@ in
     createHome = false;
   };
   users.groups.minecraft = { };
-
-  # systemd.services.minecraft-manager.postStart = ''
-  #   mkdir -p /var/lib/minecraft-manager
-  #   chown minecraft:minecraft /var/lib/minecraft-manager
-  # '';
 }
