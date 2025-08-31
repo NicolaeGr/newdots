@@ -7,10 +7,7 @@
 
     apiTokenFile = config.sops.secrets."cloudflare_api_key".path;
 
-    domains = [
-      "electrolit.biz"
-      "mc.electrolit.biz"
-    ];
+    domains = [ "electrolit.biz" ];
     frequency = "*:0/5"; # every 5 mins
 
     ipv4 = true;
