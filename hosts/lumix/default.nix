@@ -6,7 +6,6 @@
     ./cloudflare.nix
     ./jellyfin.nix
     ./fast-ceiti.nix
-    ./seafile.nix
 
     inputs.vscode-server.nixosModules.default
 
