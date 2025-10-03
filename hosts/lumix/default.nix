@@ -1,4 +1,4 @@
-{ configLib, pkgs, ... }:
+{ configLib, inputs, ... }:
 {
   imports = [
     ./hardware-configuration.nix
@@ -7,6 +7,9 @@
     ./jellyfin.nix
     ./fast-ceiti.nix
     ./seafile.nix
+
+    inputs.vscode-server.nixosModules.default
+
   ]
   ++ (map configLib.relativeToRoot [
     "hosts/_common/core"
@@ -32,27 +35,5 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  environment.systemPackages = with pkgs; [
-
-    vscode
-    vscode.fhs
-    (vscode-with-extensions.override {
-      vscodeExtensions =
-        with vscode-extensions;
-        [
-          bbenoist.nix
-          ms-python.python
-          ms-azuretools.vscode-docker
-          ms-vscode-remote.remote-ssh
-        ]
-        ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
-          {
-            name = "remote-ssh-edit";
-            publisher = "ms-vscode-remote";
-            version = "0.87.0";
-            sha256 = "1qqsnzn9z11jr72n7cl0ab6i9mv49c0ijcp699zbglv5092gmrf9";
-          }
-        ];
-    })
-  ];
+  services.vscode-server.enable = true;
 }
