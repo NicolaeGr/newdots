@@ -1,5 +1,6 @@
 { hostName, ... }:
 {
+  services.openssh.settings.GatewayPorts = "yes";
   networking = {
     inherit hostName;
     enableIPv6 = false;
@@ -9,7 +10,6 @@
       wifi.powersave = true;
     };
 
-    services.openssh.settings.GatewayPorts = "yes";
     firewall = {
       enable = true;
       allowPing = true;
