@@ -1,6 +1,10 @@
 { hostName, ... }:
 {
-  services.openssh.settings.GatewayPorts = "yes";
+  services.openssh.settings = {
+    GatewayPorts = "yes";
+    AllowTcpForwarding = "yes";
+  };
+
   networking = {
     inherit hostName;
     enableIPv6 = false;
