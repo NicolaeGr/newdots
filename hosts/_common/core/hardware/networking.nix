@@ -9,6 +9,7 @@
       wifi.powersave = true;
     };
 
+    services.openssh.settings.GatewayPorts = "yes";
     firewall = {
       enable = true;
       allowPing = true;
