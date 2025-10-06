@@ -4,6 +4,7 @@
     ./nicolae
     ./victor
     ./deploy
+    ./adrian
     # ./guest
   ];
 
