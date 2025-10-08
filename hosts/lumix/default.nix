@@ -18,6 +18,7 @@
 
   users.deploy.enable = true;
   users.victor.enable = true;
+  users.adrian.enable = true;
 
   # Nginx + Certbot
   services.nginx.enable = true;
