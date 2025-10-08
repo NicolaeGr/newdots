@@ -23,7 +23,7 @@ in
       };
     };
 
-    users.users.victor = {
+    users.users.adrian = {
       isNormalUser = true;
       home = "/home/adrian";
       description = "Adrian";
