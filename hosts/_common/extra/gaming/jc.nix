@@ -1,4 +1,11 @@
-{ pkgs, options, config, lib, ... }: {
+{
+  pkgs,
+  options,
+  config,
+  lib,
+  ...
+}:
+{
   options = {
     extra.gaming.jc.enable = lib.mkEnableOption "Enable gaming support";
   };

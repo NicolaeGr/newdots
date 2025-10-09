@@ -5,16 +5,15 @@
   ...
 }:
 {
-  imports =
-    [
-      inputs.hardware.nixosModules.lenovo-ideapad-15arh05
-      ./hardware-configuration.nix
-    ]
-    ++ (map configLib.relativeToRoot [
-      "hosts/_common/core"
-      "hosts/_common/extra"
-      "hosts/_common/users"
-    ]);
+  imports = [
+    inputs.hardware.nixosModules.lenovo-ideapad-15arh05
+    ./hardware-configuration.nix
+  ]
+  ++ (map configLib.relativeToRoot [
+    "hosts/_common/core"
+    "hosts/_common/extra"
+    "hosts/_common/users"
+  ]);
 
   boot.extraModulePackages = with config.boot.kernelPackages; [ acpi_call ];
 

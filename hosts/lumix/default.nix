@@ -6,6 +6,7 @@
     ./cloudflare.nix
     ./jellyfin.nix
     ./fast-ceiti.nix
+    ./smtp.nix
 
     inputs.vscode-server.nixosModules.default
 

@@ -1,10 +1,16 @@
-{ pkgs, options, config, lib, ... }: {
+{
+  pkgs,
+  options,
+  config,
+  lib,
+  ...
+}:
+{
   imports = [ ./jc.nix ];
 
   options = {
     extra.gaming.enable = lib.mkEnableOption "Enable essentials for gaming support";
   };
-
 
   config = lib.mkIf config.extra.gaming.enable {
     hardware.xone.enable = true; # xbox controller
