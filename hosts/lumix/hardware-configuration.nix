@@ -17,9 +17,14 @@
     "sr_mod"
   ];
 
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
+  boot.initrd.kernelModules = [ ];
+
+  boot.kernelModules = [ "kvm-intel" ];
+  boot.kernelParams = [
+    "vm.panic_on_oom=1"
+    "kernel.panic=10"
+  ];
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/1b4b2f26-ac69-4b6b-90fe-dd9d70a2e8bb";
@@ -72,7 +77,12 @@
     };
   };
 
-  swapDevices = [ ];
+  swapDevices = [
+    {
+      device = "/var/lib/swapfile";
+      size = 16 * 1024;
+    }
+  ];
 
   networking.useDHCP = lib.mkDefault true;
   # networking.interfaces.enp2s0.useDHCP = lib.mkDefault true;

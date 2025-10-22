@@ -6,7 +6,6 @@
     ./cloudflare.nix
     ./jellyfin.nix
     ./fast-ceiti.nix
-    ./smtp.nix
 
     inputs.vscode-server.nixosModules.default
 
@@ -21,14 +20,12 @@
   users.victor.enable = true;
   users.adrian.enable = true;
 
-  # Nginx + Certbot
   services.nginx.enable = true;
   security.acme = {
     acceptTerms = true;
     defaults.email = "nicolaegr@proton.me";
   };
 
-  # Dell is not a bitch and supports linux driver
   services.fwupd.enable = true;
 
   services.croc.enable = true;
@@ -37,4 +34,47 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   services.vscode-server.enable = true;
+
+  services.netdata = {
+    enable = true;
+    config = {
+      "global" = {
+        "hostname" = "lumix";
+      };
+      "web" = {
+        "bind to" = "127.0.0.1";
+      };
+    };
+  };
+
+  services.fail2ban = {
+    enable = true;
+
+    jails = {
+      sshd = ''
+        enabled = true
+        port    = ssh
+        filter  = sshd
+        logpath = /var/log/auth.log
+        maxretry = 5
+        bantime = 3600
+      '';
+
+      nginx-http-auth = ''
+        enabled  = true
+        filter   = nginx-http-auth
+        logpath  = /var/log/nginx/error.log
+        maxretry = 3
+        bantime  = 3600
+      '';
+
+      nginx-badbots = ''
+        enabled = true
+        filter  = nginx-badbots
+        logpath = /var/log/nginx/access.log
+        maxretry = 2
+        bantime  = 86400
+      '';
+    };
+  };
 }
