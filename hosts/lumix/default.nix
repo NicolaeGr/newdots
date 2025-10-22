@@ -51,15 +51,6 @@
     enable = true;
 
     jails = {
-      sshd = ''
-        enabled = true
-        port    = ssh
-        filter  = sshd
-        logpath = /var/log/auth.log
-        maxretry = 5
-        bantime = 3600
-      '';
-
       nginx-http-auth = ''
         enabled  = true
         filter   = nginx-http-auth
