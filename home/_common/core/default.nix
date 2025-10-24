@@ -8,8 +8,6 @@
 {
   imports = (configLib.scanPaths ./.) ++ (builtins.attrValues outputs.homeManagerModules);
 
-  services.ssh-agent.enable = true;
-
   nix = {
     package = lib.mkDefault pkgs.nix;
     settings = {
