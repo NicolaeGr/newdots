@@ -41,7 +41,10 @@
 
     programs.mtr.enable = true;
 
-    # programs.ssh.startAgent = true;
+    programs.ssh.startAgent = true;
+    programs.ssh.extraConfig = ''
+      AddKeysToAgent yes
+    '';
     programs.gnupg.agent.enable = true;
 
     services.openssh = {
