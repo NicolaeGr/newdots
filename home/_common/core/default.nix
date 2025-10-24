@@ -8,6 +8,8 @@
 {
   imports = (configLib.scanPaths ./.) ++ (builtins.attrValues outputs.homeManagerModules);
 
+  programs.ssh.matchBlocks."*".addKeysToAgent = true;
+
   nix = {
     package = lib.mkDefault pkgs.nix;
     settings = {
