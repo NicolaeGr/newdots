@@ -8,6 +8,7 @@
 {
   imports = (configLib.scanPaths ./.) ++ (builtins.attrValues outputs.homeManagerModules);
 
+  services.ssh-agent.enable = true;
   programs.ssh.matchBlocks."*".addKeysToAgent = true;
 
   nix = {
