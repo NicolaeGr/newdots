@@ -1,4 +1,9 @@
-{ configLib, inputs, ... }:
+{
+  configLib,
+  inputs,
+  pkgs,
+  ...
+}:
 {
   imports = [
     ./hardware-configuration.nix
@@ -37,12 +42,13 @@
 
   services.netdata = {
     enable = true;
+    package = pkgs.netdata.override { withCloudUi = true; };
     config = {
-      "global" = {
-        "hostname" = "lumix";
-      };
-      "web" = {
-        "bind to" = "127.0.0.1";
+      global = {
+        "memory mode" = "ram";
+        "debug log" = "none";
+        "access log" = "none";
+        "error log" = "syslog";
       };
     };
   };
