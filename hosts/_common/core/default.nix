@@ -43,6 +43,7 @@
 
     programs.ssh.startAgent = true;
     programs.gnupg.agent.enable = true;
+    programs.ssh.matchBlocks."*".addKeysToAgent = true;
 
     services.openssh = {
       enable = true;
