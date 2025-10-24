@@ -41,7 +41,6 @@
 
     programs.mtr.enable = true;
 
-    programs.ssh.startAgent = true;
     programs.ssh.extraConfig = ''
       AddKeysToAgent yes
     '';
