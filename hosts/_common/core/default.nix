@@ -50,6 +50,7 @@
       settings.PasswordAuthentication = false;
       settings.KbdInteractiveAuthentication = false;
       settings.PermitRootLogin = "no";
+      settings.AddKeysToAgent = "yes";
     };
 
     security.sudo.extraConfig = ''
