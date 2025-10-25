@@ -42,7 +42,7 @@
 
   services.netdata = {
     enable = true;
-    package = pkgs.unstable.netdata;
+    package = pkgs.netdata.override { withCloudUi = true; };
     config = {
       global = {
         "memory mode" = "ram";
