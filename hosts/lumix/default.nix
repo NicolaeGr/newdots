@@ -45,10 +45,16 @@
     package = pkgs.netdata.override { withCloudUi = true; };
     config = {
       global = {
-        "memory mode" = "ram";
+        "memory mode" = "swap";
         "debug log" = "none";
         "access log" = "none";
         "error log" = "syslog";
+      };
+      database = {
+        "memory mode" = "dbengine";
+
+        "dbengine" = "yes";
+        "dbengine retention" = "604800";
       };
     };
   };
