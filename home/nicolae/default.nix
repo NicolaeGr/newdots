@@ -9,7 +9,10 @@
   ]);
 
   config = {
-    home.packages = [ pkgs.firefox ];
+    home.packages = [
+      pkgs.firefox
+      pkgs.vscode
+    ];
     # extra.flatpak.enable = true;
 
     # services.flatpak.packages =

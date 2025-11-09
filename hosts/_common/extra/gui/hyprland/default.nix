@@ -37,10 +37,19 @@
       };
     };
 
+    programs.seahorse.enable = true;
     services.gnome.gnome-keyring.enable = true;
     security.pam.services.sddm.enableGnomeKeyring = true;
-    security.pam.services.gdm.enableGnomeKeyring = true;
+    environment.systemPackages = with pkgs; [
+      seahorse
+      gnome-keyring
+      libsecret
+    ];
 
-    environment.sessionVariables.NIXOS_OZONE_WL = "1";
+    environment.sessionVariables = {
+      NIXOS_OZONE_WL = "1";
+      WLD_NO_HARDWARE_CURSORS = "1";
+      # MOZ_ENABLE_WAYLAND = "1";
+    };
   };
 }

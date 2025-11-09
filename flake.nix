@@ -59,10 +59,10 @@
       );
 
       nixosConfigurations = {
-        axilon =
+        odin =
           let
             hostSpecialArgs = specialArgs // {
-              hostName = "axilon";
+              hostName = "odin";
             };
           in
           lib.nixosSystem {
@@ -76,7 +76,7 @@
                 home-manager.extraSpecialArgs = hostSpecialArgs;
               }
 
-              ./hosts/axilon
+              ./hosts/odin
             ];
           };
 

@@ -30,8 +30,6 @@
     extra.hyprland.swww.enable = true;
     extra.hyprland.waybar.enable = true;
 
-    home.packages = [ inputs.rose-pine-hyprcursor.packages.${pkgs.system}.default ];
-
     services.flatpak.packages = [ "app.zen_browser.zen" ];
 
     wayland.windowManager.hyprland = {
@@ -40,17 +38,13 @@
       systemd = {
         enable = true;
         variables = [ "--all" ];
-        extraCommands = lib.mkBefore [
-          ''export SSH_AUTH_SOCK="${config.home.homeDirectory}/.local/share/keyrings/ssh"''
-          ''export XDG_CURRENT_DESKTOP="Hyprland"''
-
-          "systemctl --user stop graphical-session.target"
-          "systemctl --user start hyprland-session.target"
-        ];
       };
 
       settings = {
-        exec-once = [ ];
+        exec-once = [
+          "${pkgs.dbus}/bin/dbus-update-activation-environment --systemd --all"
+          ''${pkgs.bash}/bin/bash -c 'eval "$(${pkgs.gnome-keyring}/bin/gnome-keyring-daemon --start --components=pkcs11,secrets)"' ''
+        ];
 
         monitor =
           if (hostName == "odin") then
@@ -77,16 +71,14 @@
         #
         env = [
           "QT_QPA_PLATFORMTHEME,qt5ct"
-          "WLD_NO_HARDWARE_CURSORS,1"
-          "NIXOS_OZONE_WL, 1"
           "MOZ_ENABLE_WAYLAND, 1"
           "MOZ_WEBRENDER, 1"
           "XDG_SESSION_TYPE,wayland"
           "WLR_NO_HARDWARE_CURSORS,1"
           "WLR_RENDERER_ALLOW_SOFTWARE,1"
           "QT_QPA_PLATFORM,wayland"
-          "HYPRCURSOR_THEME,rose-pine-hyprcursor"
-
+          "GNOME_KEYRING_CONTROL,/run/user/1000/keyring"
+          "SSH_AUTH_SOCK,/run/user/1000/keyring/ssh"
         ];
 
         binds = {
@@ -105,10 +97,7 @@
         };
 
         cursor = {
-          # no_hardware_cursors = "yes";
           inactive_timeout = 10;
-          # no_warps = true;
-          # enable_hyprcursor = "no";
         };
 
         misc = {
@@ -125,7 +114,7 @@
         general = {
           "gaps_in" = 6;
           "gaps_out" = 12;
-          "border_size" = 2;
+          "border_size" = 1;
 
           # "col.active_border" = "rgba(9e5cafee) rgba(c567dcee) 45deg";
           # "col.inactive_border" = "rgba(595959aa)";
@@ -149,10 +138,7 @@
             popups = true;
           };
 
-          drop_shadow = true;
-          shadow_range = 4;
-          shadow_render_power = 3;
-          "col.shadow" = "rgba(1a1a1aee)";
+          shadow.enabled = true;
         };
 
         animations = {

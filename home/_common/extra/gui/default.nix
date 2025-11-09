@@ -14,12 +14,31 @@
   };
 
   config = lib.mkIf config.extra.gui.enable {
-    stylix.enable = true;
-    stylix.autoEnable = true;
-    stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
-    stylix.polarity = "dark";
+    fonts.fontconfig.enable = true;
 
-    programs.vscode.enable = true;
+    stylix = {
+      enable = true;
+      autoEnable = true;
+      polarity = "dark";
+
+      icons = {
+        enable = true;
+        dark = "kora";
+        light = "kora";
+        package = pkgs.kora-icon-theme;
+      };
+
+      cursor = {
+        name = "hyprcursor-rose-pine";
+        package = inputs.rose-pine-hyprcursor.packages.${pkgs.system}.default;
+        size = 24;
+      };
+
+      base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
+
+      targets.qt.enable = true;
+      targets.vscode.enable = lib.mkDefault false;
+    };
 
     home.packages = with pkgs; [
       unstable.gnome-calculator
@@ -27,6 +46,8 @@
       unstable.cheese
       unstable.baobab
       unstable.loupe
+      kora-icon-theme
+      # inputs.rose-pine-hyprcursor.packages.${pkgs.system}.default
     ];
   };
 }

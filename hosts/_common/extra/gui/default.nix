@@ -17,6 +17,8 @@
     services.gvfs.enable = true;
     services.libinput.enable = true;
 
+    programs.dconf.enable = true;
+
     environment.systemPackages = with pkgs; [
       # Auto Mount
       udisks2
