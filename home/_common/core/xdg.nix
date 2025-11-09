@@ -6,11 +6,11 @@
       enable = true;
       createDirectories = true;
       desktop = "${config.home.homeDirectory}/.desktop";
-      documents = "${config.home.homeDirectory}/doc";
+      documents = "${config.home.homeDirectory}/Documents";
       download = "${config.home.homeDirectory}/Downloads";
-      music = "${config.home.homeDirectory}/media/audio";
-      pictures = "${config.home.homeDirectory}/media/images";
-      videos = "${config.home.homeDirectory}/media/video";
+      music = "${config.home.homeDirectory}/Media/audio";
+      pictures = "${config.home.homeDirectory}/Media/images";
+      videos = "${config.home.homeDirectory}/Media/video";
 
       extraConfig = {
         XDG_PUBLICSHARE_DIR = "/var/empty";
