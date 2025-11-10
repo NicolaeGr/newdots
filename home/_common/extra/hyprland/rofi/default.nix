@@ -16,7 +16,6 @@
   config = lib.mkIf config.extra.hyprland.rofi.enable {
     programs.rofi = {
       enable = true;
-      # theme = builtins.readFile ./custom.rasi;
     };
   };
 }

@@ -33,9 +33,7 @@
                 libXScrnSaver
                 ;
 
-              inherit (pkgs.stdenv.cc.cc)
-                lib
-                ;
+              inherit (pkgs.stdenv.cc.cc) lib;
 
               inherit (pkgs)
                 libpng
@@ -79,6 +77,10 @@
     };
 
     environment.systemPackages = with pkgs; [
+
+      winetricks
+      wineWowPackages.stable
+
       mangohud
       prismlauncher
       heroic

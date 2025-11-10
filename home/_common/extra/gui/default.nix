@@ -6,7 +6,7 @@
   ...
 }:
 {
-  imports = [ inputs.stylix.homeModules.stylix ];
+  imports = [ ./stylix.nix ];
 
   options.extra.gui.enable = lib.mkEnableOption {
     default = true;
@@ -14,40 +14,20 @@
   };
 
   config = lib.mkIf config.extra.gui.enable {
-    fonts.fontconfig.enable = true;
-
-    stylix = {
-      enable = true;
-      autoEnable = true;
-      polarity = "dark";
-
-      icons = {
-        enable = true;
-        dark = "kora";
-        light = "kora";
-        package = pkgs.kora-icon-theme;
-      };
-
-      cursor = {
-        name = "hyprcursor-rose-pine";
-        package = inputs.rose-pine-hyprcursor.packages.${pkgs.system}.default;
-        size = 24;
-      };
-
-      base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
-
-      targets.qt.enable = true;
-      targets.vscode.enable = lib.mkDefault false;
-    };
+    programs.firefox.enable = true;
+    programs.firefox.profiles."firefox.default".extensions.force = true;
 
     home.packages = with pkgs; [
-      unstable.gnome-calculator
-      unstable.nautilus
-      unstable.cheese
-      unstable.baobab
-      unstable.loupe
-      kora-icon-theme
-      # inputs.rose-pine-hyprcursor.packages.${pkgs.system}.default
+      gnome-calculator
+      gnome-calendar
+      gnome-contacts
+      nautilus
+      cheese
+      baobab
+      loupe
+      libreoffice
+
+      telegram-desktop
     ];
   };
 }

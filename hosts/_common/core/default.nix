@@ -37,14 +37,16 @@
       config = {
         allowUnfree = true;
       };
+
+      hostPlatform = lib.mkDefault "x86_64-linux";
     };
 
     programs.mtr.enable = true;
 
+    programs.gnupg.agent.enable = true;
     programs.ssh.extraConfig = ''
       AddKeysToAgent yes
     '';
-    programs.gnupg.agent.enable = true;
 
     services.openssh = {
       enable = true;

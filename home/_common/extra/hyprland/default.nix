@@ -30,7 +30,16 @@
     extra.hyprland.swww.enable = true;
     extra.hyprland.waybar.enable = true;
 
-    services.flatpak.packages = [ "app.zen_browser.zen" ];
+    home.file."screenshot_utils.sh" = {
+      target = ".config/hypr/scripts/screenshot_utils.sh";
+      source = ./screenshot_utils.sh;
+      executable = true;
+    };
+
+    home.packages = with pkgs; [
+      dunst
+      libnotify
+    ];
 
     wayland.windowManager.hyprland = {
       enable = true;
@@ -87,12 +96,13 @@
         };
 
         input = {
-          "kb_layout" = "us,ro";
-          "kb_options" = "grp:alt_shift_toggle,lv3:ralt_switch";
+          kb_layout = "us,ro";
+          kb_options = "grp:alt_shift_toggle,lv3:ralt_switch";
 
-          "natural_scroll" = "no";
+          natural_scroll = false;
           touchpad = {
-            "natural_scroll" = "yes";
+            natural_scroll = true;
+            disable_while_typing = false;
           };
         };
 
@@ -101,7 +111,7 @@
         };
 
         misc = {
-          disable_hyprland_logo = "yes";
+          disable_hyprland_logo = true;
           animate_manual_resizes = true;
           animate_mouse_windowdragging = true;
           new_window_takes_over_fullscreen = 2;
@@ -160,7 +170,7 @@
         };
 
         dwindle = {
-          pseudotile = "yes";
+          pseudotile = true;
         };
 
         gestures = {
@@ -213,7 +223,7 @@
         ];
 
         bind = [
-          "$mod, B, exec, firefox"
+          "$mod, B, exec, app.zen_browser.zen"
           "$mod, T, exec, $terminal"
           "$mod, Q, killactive,"
           "$mod, L, exec, hyprlock"

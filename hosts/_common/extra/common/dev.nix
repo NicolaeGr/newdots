@@ -17,9 +17,8 @@
         hashcat
         john
         ncrack
-
       ]
-      ++ mkIf config.extra.gui.enable [
+      ++ lib.optionals config.extra.gui.enable [
         # Web
         unstable.insomnia
       ];

@@ -1,6 +1,10 @@
-{ config, lib, ... }:
 {
-
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+{
   options = {
     extra.hyprland.hyprlock.enable = lib.mkEnableOption {
       default = false;
@@ -9,6 +13,8 @@
   };
 
   config = lib.mkIf config.extra.hyprland.hyprlock.enable {
+    home.packages = [ pkgs.hyprlock ];
+
     home.file = {
       "hyprlock-hyprlock.conf" = {
         target = ".config/hypr/hyprlock.conf";

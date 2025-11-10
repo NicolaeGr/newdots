@@ -12,8 +12,6 @@
   config = lib.mkIf config.extra.media.connect.enable {
     programs.kdeconnect.enable = true;
 
-    environment.systemPackages = with pkgs; [
-      jellyfin
-    ];
+    environment.systemPackages = with pkgs; [ jellyfin-media-player ];
   };
 }

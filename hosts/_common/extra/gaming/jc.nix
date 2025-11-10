@@ -14,9 +14,6 @@
     environment.systemPackages = with pkgs; [
       qbittorrent
 
-      winetricks
-      wineWowPackages.stable
-
       dwarfs
       fuse-overlayfs
       bubblewrap

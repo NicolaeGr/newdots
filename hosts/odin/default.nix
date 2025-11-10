@@ -2,12 +2,15 @@
   inputs,
   config,
   configLib,
+  pkgs,
   ...
 }:
 {
   imports = [
     inputs.hardware.nixosModules.lenovo-ideapad-15arh05
     ./hardware-configuration.nix
+
+    ./fs.nix
   ]
   ++ (map configLib.relativeToRoot [
     "hosts/_common/core"
@@ -15,45 +18,32 @@
     "hosts/_common/users"
   ]);
 
-  boot = {
-    loader = {
-      systemd-boot.enable = true;
-      efi.canTouchEfiVariables = true;
-    };
-
-    extraModulePackages = with config.boot.kernelPackages; [ acpi_call ];
-    kernelModules = [ "acpi_call" ];
-
-    kernelParams = [
-      "acpi_backlight=vendor"
-      "nvidia_drm.fbdev=1"
-      # Hibernation
-      "resume=/dev/disk/by-uuid/aad364ae-89b5-4400-aa98-9a58dadb513f"
-      "resume_offset=269568"
-    ];
-
-    resumeDevice = "/dev/disk/by-uuid/aad364ae-89b5-4400-aa98-9a58dadb513f";
-  };
-
-  swapDevices = [
-    {
-      device = "/swap/swapfile";
-    }
-  ];
-
-  fileSystems = {
-    "/".options = [ "subvol=@,compress=zstd,noatime" ];
-    "/home".options = [ "subvol=@home,compress=zstd,noatime" ];
-    "/nix".options = [ "subvol=@nix,compress=zstd,noatime" ];
-    "/var/log".options = [ "subvol=@log,compress=zstd,noatime" ];
-    "/.snapshots".options = [ "subvol=@snapshots,compress=zstd,noatime" ];
-    "/swap".options = [ "subvol=@swap,compress=none,noatime" ];
-  };
-
   extra.gui.enable = true;
   extra.gui.hyprland.enable = true;
 
+  extra.common.enable = true;
+  extra.flatpak.enable = true;
+  extra.common.devMode.enable = true;
+  extra.hardware.audio.enable = true;
+  extra.hardware.nvidia.enable = true;
+
+  extra.gaming.enable = true;
+  extra.gaming.jc.enable = true;
+  extra.media.full.enable = true;
+
   semi-active-av.enable = true;
 
-  #  system.stateVersion = "24.11";
+  environment.systemPackages = with pkgs; [
+    calibre
+
+    vial
+
+    gimp
+    avahi
+    gitkraken
+  ];
+
+  services.udev.extraRules = ''
+    KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{serial}=="*vial:f64c2b3c*", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
+  '';
 }

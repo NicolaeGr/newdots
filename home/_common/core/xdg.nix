@@ -23,6 +23,10 @@
       enable = true;
       defaultApplications = {
         "inode/directory" = [ "org.gnome.Nautilus.desktop" ];
+        "text/html" = [ "app.zen_browser.zen.desktop" ];
+        "application/pdf" = [ "app.zen_browser.zen.desktop" ];
+        "text/*" = [ "code.desktop" ];
+        "image/*" = [ "org.gnome.Loupe.desktop" ];
       };
     };
     configFile."mimeapps.list".force = true;

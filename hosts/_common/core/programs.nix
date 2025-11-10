@@ -6,9 +6,15 @@
     nil
     nixpkgs-fmt
 
-    # Utils
-    lshw
+    # System
     fastfetch
+    pciutils
+    btop
+    htop
+
+    # Utils
+    e2fsprogs
+    lshw
     jq
     tree
     wget
@@ -20,9 +26,8 @@
     xz
     gnutar
     rsync
-    htop
-    btop
     glances
     nethogs
+    dua
   ];
 }
