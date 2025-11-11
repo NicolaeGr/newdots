@@ -34,7 +34,6 @@
 
       nixfmt-rfc-style = {
         enable = true;
-        # package = pkgs.nixfmt-rfc-style;
       };
       shfmt.enable = true;
 

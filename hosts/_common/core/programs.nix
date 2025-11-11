@@ -2,7 +2,7 @@
 {
   environment.systemPackages = with pkgs; [
     # Nix Essentials
-    nixfmt-classic
+    nixfmt-rfc-style
     nil
     nixpkgs-fmt
 
