@@ -23,11 +23,23 @@
       # Auto Mount
       udisks2
       udiskie
+
+      #Amd GPU
+      libva
+      libva-utils
+      vdpauinfo
     ];
 
     hardware.graphics = {
       enable = true;
       enable32Bit = true;
+
+      extraPackages = with pkgs; [
+        amdvlk
+        vulkan-tools
+        mesa
+        vaapiVdpau
+      ];
     };
 
     xdg.portal = {

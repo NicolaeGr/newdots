@@ -14,6 +14,7 @@
 
     # Utils
     e2fsprogs
+    file
     lshw
     jq
     tree
