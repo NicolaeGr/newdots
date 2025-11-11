@@ -52,7 +52,7 @@
       settings = {
         exec-once = [
           "${pkgs.dbus}/bin/dbus-update-activation-environment --systemd --all"
-          ''${pkgs.bash}/bin/bash -c 'eval "$(${pkgs.gnome-keyring}/bin/gnome-keyring-daemon --start --components=pkcs11,secrets)"' ''
+          ''${pkgs.bash}/bin/bash -c 'eval "$(${pkgs.gnome-keyring}/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)"' ''
         ];
 
         monitor =
