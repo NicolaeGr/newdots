@@ -136,8 +136,8 @@
               "💡"
               "💡"
             ];
-            on-scroll-down = "brightnessctl -c backlight set 1%-";
-            on-scroll-up = "brightnessctl -c backlight set +1%";
+            on-scroll-down = "light - U 10";
+            on-scroll-up = "light - A 10";
           };
 
           battery = {

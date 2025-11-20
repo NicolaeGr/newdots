@@ -26,6 +26,7 @@
   extra.common.devMode.enable = true;
   extra.hardware.audio.enable = true;
   extra.hardware.nvidia.enable = true;
+  extra.hardware.backlight.enable = true;
 
   extra.gaming.enable = true;
   extra.gaming.jc.enable = true;

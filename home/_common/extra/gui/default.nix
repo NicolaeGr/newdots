@@ -6,7 +6,10 @@
   ...
 }:
 {
-  imports = [ ./stylix.nix ];
+  imports = [
+    ./stylix.nix
+    ./dev.nix
+  ];
 
   options.extra.gui.enable = lib.mkEnableOption {
     default = true;
@@ -28,6 +31,8 @@
       libreoffice
 
       telegram-desktop
+
+      obsidian
     ];
   };
 }

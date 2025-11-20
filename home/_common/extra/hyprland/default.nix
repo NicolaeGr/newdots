@@ -9,6 +9,7 @@
 {
 
   imports = [
+    ./screenshots
     ./hyprlock
     ./hypridle
     ./waybar
@@ -29,12 +30,6 @@
     extra.hyprland.rofi.enable = true;
     extra.hyprland.swww.enable = true;
     extra.hyprland.waybar.enable = true;
-
-    home.file."screenshot_utils.sh" = {
-      target = ".config/hypr/scripts/screenshot_utils.sh";
-      source = ./screenshot_utils.sh;
-      executable = true;
-    };
 
     home.packages = with pkgs; [
       dunst
@@ -200,6 +195,13 @@
           "float, class:^(keymapp)$"
 
           #
+          # ========== Screenshot App =========
+          #
+          "float,        class:^(com.gabm.satty)$"
+          "size 50% 50%, class:^(com.gabm.satty)$"
+          "center,       class:^(com.gabm.satty)$"
+
+          #
           # ========== Always opaque ==========
           #
           "opaque, class:^([Gg]imp)$"
@@ -220,6 +222,12 @@
           "stayfocused, title:^()$,class:^([Ss]team)$"
           "minsize 1 1, title:^()$,class:^([Ss]team)$"
           "immediate, class:^([Ss]team_app_*)$"
+
+          # JetBrains IDEs
+          "opaque, class:^(jetbrains-.*)$"
+          "noinitialfocus, class:^(jetbrains-.*)$, title:^$, initialTitle:^$, floating:1"
+          "stayfocused, class:^(jetbrains-.*)$, title:^$, floating:1"
+          "nofocus, class:^(jetbrains-.*)$, title:^(win.*)$, floating:1"
         ];
 
         bind = [
@@ -286,9 +294,9 @@
           ", XF86MonBrightnessDown, exec, light -U 10"
 
           ", XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
-          ", Print, exec, hyprshot -m region -o Pictures/Screenshots"
-          "Alt, Print, exec, hyprshot -m window -o Pictures/Screenshots"
-          "$mod, Print, exec, hyprshot -m output -o Pictures/Screenshots"
+          ", Print, exec, $HOME/.config/hypr/scripts/screenshot_utils.sh region"
+          "Alt, Print, exec, $HOME/.config/hypr/scripts/screenshot_utils.sh window"
+          "$mod, Print, exec, $HOME/.config/hypr/scripts/screenshot_utils.sh full"
         ];
       };
     };

@@ -22,6 +22,10 @@
       jack.enable = true;
     };
 
-    environment.systemPackages = with pkgs; [ playerctl ];
+    environment.systemPackages = with pkgs; [
+      playerctl
+      pavucontrol
+      carla
+    ];
   };
 }

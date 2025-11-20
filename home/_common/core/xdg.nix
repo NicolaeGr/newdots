@@ -23,8 +23,14 @@
       enable = true;
       defaultApplications = {
         "inode/directory" = [ "org.gnome.Nautilus.desktop" ];
+
         "text/html" = [ "app.zen_browser.zen.desktop" ];
         "application/pdf" = [ "app.zen_browser.zen.desktop" ];
+        "x-scheme-handler/http" = [ "app.zen_browser.zen.desktop" ];
+        "x-scheme-handler/https" = [ "app.zen_browser.zen.desktop" ];
+        "x-schema-handler/about" = [ "app.zen_browser.zen.desktop" ];
+        "application/vnd.mozilla.xul+xml" = [ "app.zen_browser.zen.desktop" ];
+
         "text/*" = [ "code.desktop" ];
         "image/*" = [ "org.gnome.Loupe.desktop" ];
       };

@@ -5,7 +5,7 @@
   pkgs,
 }:
 {
-  # imports = [ inputs.ags.homeManagerModules.default ];
+  imports = [ inputs.ags.homeManagerModules.default ];
 
   options.extra.hyprland.ags.enable = lib.mkEnableOption {
     default = false;
@@ -13,16 +13,16 @@
   };
 
   config = lib.mkIf config.extra.hyprland.ags.enable {
-    # programs.ags = {
-    #   enable = true;
+    programs.ags = {
+      enable = true;
 
-    #   configDir = ./conf;
+      configDir = ./conf;
 
-    #   extraPackages = with pkgs; [
-    #     gtksourceview
-    #     webkitgtk
-    #     accountsservice
-    #   ];
-    # };
+      extraPackages = with pkgs; [
+        gtksourceview
+        webkitgtk
+        accountsservice
+      ];
+    };
   };
 }

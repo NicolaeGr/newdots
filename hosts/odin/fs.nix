@@ -10,7 +10,7 @@
     kernelModules = [ "acpi_call" ];
 
     kernelParams = [
-      "acpi_backlight=vendor"
+      "amdgpu.backlight=0"
       "nvidia_drm.fbdev=1"
       # Hibernation
       "resume=/dev/disk/by-uuid/aad364ae-89b5-4400-aa98-9a58dadb513f"
